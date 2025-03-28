@@ -1,0 +1,19 @@
+As you clearly see in this screenshot, we have three roles, manager, owner, tenant., This is my prompt to a replit agent, 
+
+In manager role under properties tab, 'add a new property' button is not working for its response & also inside the details card 'view maintenance history', 'view payment hostory', 'assigned tenant' button is not working for its functionality, and  'add a new property' cahnge to  'add a new society' because he is manager of society.. 
+
+In maintenance tab under manager role, add 2 more cards for collecting the denied & accepted maintenance requests from owner & tenant. 
+
+In the visitors tab under the manager role, the approve and deny button functionality is not working for its response behavior, 
+
+Now, in properties tab under tenant user role, inside the property details cards, the rent payment paid date is not mentioned for defining whether the rent is already paid or not, 
+
+In the maintenance tab under Tenant user role, add 2 more cards for collecting the denied & accepted maintenance requests investigated/looking by manager, and is totally uneditable for owner and tenant only, 
+
+In the visitors tab under tenant user role, the approve and deny button functionality is not working for its response behavior, the same as the manager & owner role,
+
+In the dashboard tab under owner user role, 'Rent payment' box is replaced by the original price and renting price of the apartment box, meaning the box is not valid for owner role, which has to be changed, 
+
+In the properties tab under owner user role, the same 'add new property button is not working for its response and functionality & also set the limit to 5 for maximum apartment purchasing in society. In the property details card, the society name is missing, which apartment belongs to which society. 
+
+In the maintenance tab under the owner user role, add 2 more cards for collecting the denied & accepted maintenance requests investigated/looking by manager, and is totally uneditable for owner and tenant only, 
