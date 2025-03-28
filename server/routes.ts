@@ -123,6 +123,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
     const user = req.user!;
     
     // If user is manager or owner, return all payments
+    /*
     if (user.role === 'manager') {
       const payments = await storage.getAllPayments();
       return res.json(payments);
@@ -134,6 +135,22 @@ export async function registerRoutes(app: Express): Promise<Server> {
       const payments = await storage.getAllPayments();
       return res.json(payments);
     }
+    */
+
+    // If user is manager or owner, return all payments
+    if (user.role === 'manager') {
+      const payments = await storage.getAllPayments();
+      return res.json(payments);
+    } else if (user.role === 'owner') {
+      const payments = await storage.getPaymentsByOwner(user.id);
+      return res.json(payments);
+    } else if (user.role === 'security') {
+      // Security can see all payments but probably doesn't need to
+      const payments = await storage.getAllPayments();
+      return res.json(payments);
+    }
+    
+    
     
     // For tenants, return only their payments
     const payments = await storage.getPaymentsByTenant(user.id);

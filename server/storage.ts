@@ -166,6 +166,18 @@ export class DatabaseStorage implements IStorage {
       .where(eq(payments.tenantId, tenantId));
   }
 
+  async getAllPayments(): Promise<Payment[]> {
+    return await db.select().from(payments);
+  }
+
+  async getPaymentsByOwner(ownerId: number): Promise<Payment[]> {
+    const ownerApartments = await this.getApartments(ownerId);
+    const apartmentIds = ownerApartments.map(apt => apt.id);
+    return await db.select()
+      .from(payments)
+      .where(inArray(payments.apartmentId, apartmentIds));
+  }
+
   async createVisitor(visitor: InsertVisitor): Promise<Visitor> {
     const [newVisitor] = await db.insert(visitors).values(visitor).returning();
     return newVisitor;
