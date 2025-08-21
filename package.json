@@ -5,7 +5,7 @@
   "license": "MIT",
   "scripts": {
     "dev": "tsx server/index.ts",
-    "build": "vite build && esbuild server/index.ts --platform=node --packages=external --bundle --format=esm --outdir=dist",
+    "build": "rm -rf dist && vite build && esbuild server/index.ts --platform=node --packages=external --bundle --format=esm --outdir=dist && cp .env dist/.env && cp .env dist/.env",
     "start": "cross-env NODE_ENV=production node dist/index.js",
     "check": "tsc",
     "db:generate": "drizzle-kit generate:pg --schema ./src/db/schema.ts --out=",

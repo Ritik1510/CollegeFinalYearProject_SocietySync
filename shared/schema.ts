@@ -21,6 +21,7 @@ export const apartments = pgTable("apartments", {
   area: integer("area").notNull(), // in square feet
   amenities: text("amenities").array(), // list of available amenities
   lastMaintenanceDate: timestamp("last_maintenance_date"),
+  societyName: text("society_name").notNull(), // name of the society
 });
 
 export const maintenanceRequests = pgTable("maintenance_requests", {

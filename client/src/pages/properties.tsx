@@ -116,7 +116,7 @@ export default function PropertiesPage() {
       </div>
 
       <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-        {apartments?.map((apartment) => {
+        {apartments?.map((apartment: Apartment) => {
           const lastPayment = payments?.find(p => p.apartmentId === apartment.id);
 
           return (

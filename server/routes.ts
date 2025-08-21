@@ -104,7 +104,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
         apartmentId: apartmentId || (req.body.apartmentId ? Number(req.body.apartmentId) : null),
         tenantId: req.user!.id,
         amount: Number(amount),
-        date: new Date().toISOString(),
+        date: new Date(),
         type: req.body.type || "rent",
         // In a real app, you'd store payment method details
         // paymentMethod: "UPI",
@@ -134,6 +134,23 @@ export async function registerRoutes(app: Express): Promise<Server> {
       const payments = await storage.getAllPayments();
       return res.json(payments);
     }
+    
+
+    /*
+    // If user is manager or owner, return all payments
+    if (user.role === 'manager') {
+      const payments = await storage.getAllPayments();
+      return res.json(payments);
+    } else if (user.role === 'owner') {
+      const payments = await storage.getPaymentsByOwner(user.id);
+      return res.json(payments);
+    } else if (user.role === 'security') {
+      // Security can see all payments but probably doesn't need to
+      const payments = await storage.getAllPayments();
+      return res.json(payments);
+    }
+    
+    */
     
     // For tenants, return only their payments
     const payments = await storage.getPaymentsByTenant(user.id);
