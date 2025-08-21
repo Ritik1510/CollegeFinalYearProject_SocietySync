@@ -55,7 +55,8 @@ export class DatabaseStorage implements IStorage {
         area: 1000,
         status: "occupied",
         amenities: ["AC", "Parking"],
-        lastMaintenanceDate: new Date()
+        lastMaintenanceDate: new Date(),
+        societyName: "Society A"
       }).returning();
 
       // Create maintenance request
@@ -172,6 +173,9 @@ export class DatabaseStorage implements IStorage {
 
   async getPaymentsByOwner(ownerId: number): Promise<Payment[]> {
     const ownerApartments = await this.getApartments(ownerId);
+    if (ownerApartments.length === 0) {
+      return [];
+    }
     const apartmentIds = ownerApartments.map(apt => apt.id);
     return await db.select()
       .from(payments)
