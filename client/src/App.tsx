@@ -11,6 +11,7 @@ import MaintenancePage from "@/pages/maintenance";
 import { AuthProvider } from "@/hooks/use-auth";
 import { ProtectedRoute } from "./lib/protected-route";
 import { Layout } from "@/components/layout";
+import PaymentPage from "./pages/payment";
 
 function ProtectedApp() {
   return (

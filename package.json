@@ -5,11 +5,12 @@
   "license": "MIT",
   "scripts": {
     "dev": "tsx server/index.ts",
-    "build": "rm -rf dist && vite build && esbuild server/index.ts --platform=node --packages=external --bundle --format=esm --outdir=dist && cp .env dist/.env && cp .env dist/.env",
+    "build": "rm -rf dist && vite build && esbuild server/index.ts --platform=node --packages=external --bundle --format=esm --outdir=dist && cp .env dist/.env",
     "start": "cross-env NODE_ENV=production node dist/index.js",
     "check": "tsc",
-    "db:generate": "drizzle-kit generate:pg --schema ./src/db/schema.ts --out=",
-    "db:push": "drizzle-kit push"
+    "db:generate": "drizzle-kit generate --name",
+    "db:push": "drizzle-kit push",
+    "db:migrate": "tsx ./server/migrateToProd/migrate.ts"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.9.1",

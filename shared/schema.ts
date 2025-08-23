@@ -2,12 +2,22 @@ import { pgTable, text, serial, integer, boolean, timestamp } from "drizzle-orm/
 import { createInsertSchema } from "drizzle-zod";
 import { z } from "zod";
 
+// seperate timestamps block
+export const timestamps = {
+  createdAt: timestamp("createdAt").defaultNow().notNull(),
+  updatedAt: timestamp("updatedAt").defaultNow().notNull(),
+};
+
 export const users = pgTable("users", {
   id: serial("id").primaryKey(),
   username: text("username").notNull().unique(),
   password: text("password").notNull(),
   role: text("role", { enum: ["tenant", "manager", "owner", "visitor", "security"] }).notNull(),
   name: text("name").notNull(),
+
+  // new columns for timestamps 
+  CratedAt: timestamp("created_at").notNull().defaultNow(),
+  updatedAt: timestamp("created_at").notNull().defaultNow()
 });
 
 export const apartments = pgTable("apartments", {
@@ -30,7 +40,7 @@ export const maintenanceRequests = pgTable("maintenance_requests", {
   tenantId: integer("tenant_id").references(() => users.id).notNull(),
   description: text("description").notNull(),
   status: text("status", { enum: ["pending", "in_progress", "completed", "denied"] }).notNull(),
-  createdAt: timestamp("created_at").notNull().defaultNow(),
+  ...timestamps, 
 });
 
 export const payments = pgTable("payments", {
