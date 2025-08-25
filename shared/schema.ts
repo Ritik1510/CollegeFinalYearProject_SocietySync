@@ -13,10 +13,8 @@ export const users = pgTable("users", {
   username: text("username").notNull().unique(),
   password: text("password").notNull(),
   role: text("role", { enum: ["tenant", "manager", "owner", "visitor", "security"] }).notNull(),
-  name: text("name").notNull(),
-
-  // new columns for timestamps 
-  CratedAt: timestamp("created_at").notNull().defaultNow(),
+  name: text("name").notNull(), 
+  CratedAt: timestamp("created_at").notNull().defaultNow(), // new columns for timestamps
   updatedAt: timestamp("created_at").notNull().defaultNow()
 });
 
@@ -40,7 +38,7 @@ export const maintenanceRequests = pgTable("maintenance_requests", {
   tenantId: integer("tenant_id").references(() => users.id).notNull(),
   description: text("description").notNull(),
   status: text("status", { enum: ["pending", "in_progress", "completed", "denied"] }).notNull(),
-  ...timestamps, 
+  createdAt: timestamp("created_at").notNull().defaultNow(), 
 });
 
 export const payments = pgTable("payments", {

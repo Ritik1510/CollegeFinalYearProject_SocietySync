@@ -13,7 +13,7 @@ import {
   MaintenanceRequest, 
   insertMaintenanceRequestSchema,
   Apartment
-} from "@shared/schema";
+} from "../../schema";
 import { 
   Wrench,
   Clock,

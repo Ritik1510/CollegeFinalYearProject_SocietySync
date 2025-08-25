@@ -5,13 +5,16 @@ import { neon } from "@neondatabase/serverless";
 
 const sql = neon(process.env.DATABASE_URL!);
 const db = drizzle(sql); 
+if (!db) {
+    console.log("_db instance is not avilable_")
+}
 // console.log("Database Instance: ", db);
 
 const migrateToProd = async () => {
     try {
         console.log("Starting migration to production...");
         await migrate(db, {
-            migrationsFolder: "../drizzleMigrations"
+            migrationsFolder: "../drizzleMigrations/meta"
         })
         console.log("Migration to production is successful");
     } catch (error) {

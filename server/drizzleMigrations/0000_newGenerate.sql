@@ -27,8 +27,7 @@ CREATE TABLE "maintenance_requests" (
 	"tenant_id" integer NOT NULL,
 	"description" text NOT NULL,
 	"status" text NOT NULL,
-	"created_at" timestamp DEFAULT now() NOT NULL,
-	"updated_at" timestamp DEFAULT now() NOT NULL
+	"created_at" timestamp DEFAULT now() NOT NULL
 );
 --> statement-breakpoint
 CREATE TABLE "payments" (
